@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html id="fondo" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Clima</title>
+
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3e3133ad6e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+</head>
+<body>
+       <h1 id="titulo" class="font-serif text-6xl mt-6 text-black font-bold uppercase text-center">Como está el clima en ... <i class="fas fa-temperature-low"></i></h1>
+        <!--<p class="font-serif text-2xl font-bold text-center  mt-2 ml-48 text-black">By Katherine Mejía 2021</p>-->
+        
+       
+
+            <div class="p-6 mt-10">
+                <div id="resultado">
+                    <p class=" font-serif text-3xl ml3 text-center text-white mt-6">Agrega una ciudad y país, el resultado se mostrará aquí &#8711;</p>
+                </div>
+            </div>
+            <div class="max-w-lg mx-auto ">
+            <form id="formulario" class="mt-10 " action="#" method="POST">
+               
+                <div class="mt-5">
+                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700
+                    py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                    id="pais">
+                    <option disabled selected value="">- Seleccione Pais -</option>
+                    <option value="DE">Alemania</option>
+                    <option value="AR">Argentina</option>
+                    <option value="AU">Australia</option>
+                    <option value="BZ">Belice</option>
+                    <option value="BO">Bolivia</option>
+                    <option value="BR">Brasil</option>
+                    <option value="CA">Canada</option>
+                    <option value="CL">Chile</option>
+                    <option value="CN">China</option>
+                    <option value="CO">Colombia</option>
+                    <option value="KP">Corea del Norte</option>
+                    <option value="KR">Corea del Sur</option>
+                    <option value="CR">Costa Rica</option>
+                    <option value="CU">Cuba</option>
+                    <option value="DK">Dinamarca</option>
+                    <option value="EC">Ecuador</option>
+                    <option value="EG">Egipto</option>
+                    <option value="SV">El Salvador</option>
+                    <option value="ES">España</option>
+                    <option value="US">Estados Unidos</option>
+                    <option value="FR">Francia</option>
+                    <option value="GH">Ghana</option>
+                    <option value="GR">Grecia</option>
+                    <option value="NL">Holanda</option>
+                    <option value="IN">India</option>
+                    <option value="IL">Israel</option>
+                    <option value="IT">Italia</option>
+                    <option value="JP">Japon</option>
+                    <option value="MX">México</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="NO">Noruega</option>
+                    <option value="PA">Panama</option>
+                    <option value="PY">Paraguay</option>
+                    <option value="PE">Perú</option>
+                    <option value="PT">Portugal</option>
+                    <option value="GB">Reino Unido</option>
+                    <option value="RU">Rusia</option>
+                    <option value="ZA">Sudafrica</option>
+                    <option value="SE">Suecia</option>
+                    <option value="CH">Suiza</option>
+                    <option value="SY">Siria</option>
+                    <option value="TH">Tailandia</option>
+                    <option value="TH">Tailandia</option>
+                    <option value="TR">Turquia</option>
+                    <option value="VE">Venezuela</option>
+                    <option value="ZW">Zimbabue</option>
+                    </select>
+                </div>
+                <div class="mt-5">
+                    <input 
+                        type="text" 
+                        name="ciudad"
+                        id="ciudad"
+                        placeholder="Escriba la Ciudad"
+                        class="w-full p-2 rounded"
+                    />
+                </div>
+                <input id="btnCapture"
+                    type="submit"
+                    class="font-mono text-2xl mt-5 w-full  p-3 bg-black  uppercase font-bold  cursor-pointer rounded text-white"
+                    value="Obtener Clima"
+                />
+              <input type="button" id="actualizar"  class= "font-mono text-2xl mt-5 w-full bg-black p-3  uppercase font-bold  cursor-pointer rounded text-white"
+                value="Nueva Busqueda" onclick="location.reload()" />
+
+                
+            </form>
+        </div>
+  
+    
+
+    <script src="js/app.js"></script>
+    <div id="piePagina" class="font-mono m-8 font-bold text-right ml-auto mt-auto text-2xl">
+    <footer>
+        
+        <p>Autor: Katherine Mejía</p>
+        <p>Versión 1 - 2021</p>
+        <p><a href="https://www.linkedin.com/in/katherine-mej%C3%ADa-mart%C3%ADnez-731057176/">Visitame</a></p>
+      </footer>
+    </div>
+</body>
+      
+</html>

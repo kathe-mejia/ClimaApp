@@ -190,7 +190,7 @@ function showWeather(datos){
 
     const nebliSound=document.createElement('audio')
     nebliSound.src="/sounds/neblina.mp3"
-
+//LOS SONIDOS SE SOLAPAN CUANDO HAGO UNA NUEVA BUSQUEDA
 //EN CADA CASE APARECE UNA IMAGEN, CAMBIA EL FONDO Y SE REPRODUCE UN SONIDO
     switch (true) {
         case (icono==='01d'):
@@ -345,18 +345,19 @@ function showWeather(datos){
     resultado.appendChild(resultadoDiv);
   
 } 
-
+//FUNCION QUE CONVIERTE A CENTIGRADOS
 function kelvinACentigrados(grados){
     return parseInt(grados - 273.15);
 }
 
-//CONVIRTAMOLA EN ARROW FUNCTION
-/* const kelvinACentigrados = gardos => parseInt(grados - 273.15); */
 
 
+//A ESTA FUNCION LE AÑADO DESHABILITAR BOTON 
 function limpiarHTML() {
     while(resultado.firstChild) {
         resultado.removeChild(resultado.firstChild);
+        //Inhabilito el boton despues de la primer busqueda
+        document.getElementById("btnCapture").disabled=true;
     }
 }
 

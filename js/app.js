@@ -66,21 +66,21 @@ function searchWeather(e) {
 
     //Consultar la API si pasa la validacion
     consultarAPI2(ciudad, pais);//API de geolocation
-    consultarAPI(ciudad, pais,);
+    consultarAPI(ciudad, pais);
 }
 
 //SE CORRIGE ESTA FUNCIÓN
 function mostrarError(mensaje){
     const alerta = document.querySelector('.bg-red-100')//la uso porque se que no esta en ningun otro lado
     if(!alerta){
-            //CREEMOS UNA ALERTA CON SCRITING
+            //CREEMOS UNA ALERTA CON SCRIPTING
     const alerta = document.createElement('div');
     //clases de tailwind
     alerta.classList.add('bg-black','border-solid', 'text-white', 'px-4',
      'py-3', 'rounded', 'max-w-md', 'mx-auto', 'mt-6', 'text-center','font-mono','text-3xl' );
     
      alerta.innerHTML = `
-        <strong class="font-bold">No se realizó la consulta</strong>
+        <strong>No se realizó la consulta</strong>
         <span class="block">${mensaje}</span>
      `;
      //AQUI SE CORRIGE SE MUESTRA ALERTA EN CAMPO RESULTADO
@@ -88,12 +88,12 @@ function mostrarError(mensaje){
         //ELIMINEMOS LA ALERTA
         setTimeout(()=>{
             alerta.remove();
-        }, 7000)
+        }, 4000)
 
     }
 }
 
-
+//consulta de API de la hora local
 function consultarAPI2(ciudad, pais) {
     const apiKey = 'f2ab6701285b45d3b43086b4d94517e7';//la api key con mi cuenta
     const url2 = `https://api.ipgeolocation.io/timezone?apiKey=${apiKey}&location=${ciudad},%20${pais}`;
@@ -129,7 +129,7 @@ function guardarHora(data){
     console.log(resultadoDiv)
  }
 
-
+//Funcion consultar clima con API open
 function consultarAPI(ciudad, pais) {
     const appID = '47f3586bf5961638beb5900079181fee';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appID}`;
@@ -141,7 +141,7 @@ function consultarAPI(ciudad, pais) {
         .then( datos => {
             limpiarHTML();
             if(datos.cod === "404") {
-                mostrarError('Ciudad no encontrada.')
+                mostrarError('Ciudad no encontrada')
                 return;
             }
             //Imprimir la respuesta en el html
@@ -157,6 +157,8 @@ function showWeather(datos){
     const min = kelvinACentigrados(temp_min);
     const sensacion = kelvinACentigrados(feels_like);
     const icono = icon;
+
+
     const horario = unixToHuman(dt);
     let imgsrc;
     let palabra;
@@ -331,6 +333,7 @@ function showWeather(datos){
     const cielo = document.createElement('div');
     cielo.innerHTML = `Cielo: ${palabra}`;
     cielo.classList.add('font-bold', 'col-start-7', 'col-span-2', 'text-center');
+
 
     //Todo el resultado 
     const resultadoDiv = document.createElement('div');

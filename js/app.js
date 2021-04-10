@@ -44,7 +44,8 @@ colorBtn.addEventListener('mouseleave', e => {
       colorBtn2.style.background = 'black';
   
     });   
-
+//Me sorprende lo bien que entendiste los Eventos y como los aplicas
+//al igual que los arrow functions...Diego B.
 
 
 
@@ -306,7 +307,13 @@ function showWeather(datos){
         
     }
 
-    
+    //KATHE LO MAS PROBABLE ES QUE LOS SONIDOS SE TE SOLAPEN POR QUE EN EL SWITCH
+    //ESTAS HACIENDO LOS LLAMADOS A PLAY DEL SONIDO
+    //MEJOR LO QUE HACES ARRIBA ES ASIGNAR EL SOURCE
+    //Y AQUI ABAJO EL LLAMADO AL PLAY (RECUERDA QUE COMO LA FUNCION AL CORRER NUEVAMENTE LIMPIA EL HTML
+    //ES PROBABLE QUE TE LO BORRE.
+    //TAMBIEN PUEDES INTENTAR USAR LA FUNCION LIMPIAR HTML ADENTRO DE LOS CASE(AUNQUE NO ME LLAMA LA ATENCION)
+    //Y BORRAR EL AUDIO ANTERIOR CADA QUE QLLAMES UNO NUEVO
     const nombreCiudad = document.createElement('div');
     nombreCiudad.innerHTML = `El Clima en ${name}, es:`;
     nombreCiudad.classList.add('text-4xl', 'mt-5', 'font-bold', 'col-start-5', 'col-span-4' )

@@ -9,23 +9,11 @@ window.addEventListener('load', () => {
     
 } )
 
-//CREAR UN BOTON PARA REINICIAR BUSQUEDA ¡¡¡¡NO FUNCIONA!!! CON MOUSE ENTER SI MUESTRA POR CONSOLA
-/*const buscar=document.querySelector('#btnCapture')
-buscar.addEventListener('onlick', e =>{
-   const btNew=document.createElement('input');
-    btNew.type = 'button'; 
-    btNew.id= 'acutalizar'
-    btNew.value = 'Nueva busqueda'; 
-    console.log("crear boton");
-
-   
-});*/
-
 
 //ACCIONES AL PASAR EL CURSOR POR BOTONES
 const colorBtn=document.querySelector('#btnCapture');
 colorBtn.addEventListener('mouseenter', e => {
-    colorBtn.style.background = '#597FEE';
+    colorBtn.style.background = '#281081';
 
   });
 
@@ -36,7 +24,7 @@ colorBtn.addEventListener('mouseleave', e => {
 
   const colorBtn2=document.querySelector('#actualizar');
   colorBtn2.addEventListener('mouseenter', e => {
-      colorBtn2.style.background = '#597FEE';
+      colorBtn2.style.background = '#281081';
   
     });
   
@@ -47,7 +35,12 @@ colorBtn.addEventListener('mouseleave', e => {
 //Me sorprende lo bien que entendiste los Eventos y como los aplicas
 //al igual que los arrow functions...Diego B.
 
-
+//Ultimos cambios
+//Añadí un icono para que se vea en la pestaña del navegador
+//Mostré más datos (humedad, latitud y longitud)
+//Detalles con los estilos
+//En el footer el visitame lleva https://github.com/kathe-mejia
+//Intenté algunas cosas con el tema de los sonidos pero no resultó
 
 //Función busqueda de datos
 
@@ -150,14 +143,17 @@ function consultarAPI(ciudad, pais) {
         })
 }
 
-
+//Se agregan mas datos por mostrar
 function showWeather(datos){
-    const {name, main: { temp, temp_max, temp_min, feels_like}, weather:{0:{icon}}, dt} = datos;
+    const {name, main: { temp, temp_max, temp_min, feels_like, humidity}, coord:{lon,lat}, weather:{0:{icon}}, dt} = datos;
     const centigrados = kelvinACentigrados(temp);
     const max = kelvinACentigrados(temp_max);
     const min = kelvinACentigrados(temp_min);
     const sensacion = kelvinACentigrados(feels_like);
     const icono = icon;
+    const humedad =humidity;
+    const lati =lat;
+    const longi =lon;
 
 
     const horario = unixToHuman(dt);
@@ -193,7 +189,7 @@ function showWeather(datos){
 
     const nebliSound=document.createElement('audio')
     nebliSound.src="/sounds/neblina.mp3"
-//LOS SONIDOS SE SOLAPAN CUANDO HAGO UNA NUEVA BUSQUEDA
+
 //EN CADA CASE APARECE UNA IMAGEN, CAMBIA EL FONDO Y SE REPRODUCE UN SONIDO
     switch (true) {
         case (icono==='01d'):
@@ -201,8 +197,6 @@ function showWeather(datos){
 
             palabra = "Soleado"
             imgsrc = "img/soleado.png"
-          /*  const solSound=document.createElement('audio')
-            solSound.src="sounds/soleado.mp3"*/
             const sol=document.querySelector("#fondo");
             sol.style.backgroundImage = "url('/img/soleadito.gif')";
             solSound.play();
@@ -213,8 +207,6 @@ function showWeather(datos){
 
             palabra = "Despejado"
             imgsrc = "img/luna.png"
-          /*  const despSound=document.createElement('audio')
-            despSound.src="sounds/despejado.mp3"*/
             const desp=document.querySelector("#fondo");
             desp.style.backgroundImage = "url('/img/despejado.gif')";
             despSound.play();
@@ -224,8 +216,6 @@ function showWeather(datos){
 
             palabra = " Parcialmente Nublado"
             imgsrc = "img/parciald.png"
-          /*  const parSound=document.createElement('audio')
-            parSound.src="sounds/parcial.mp3"*/
             const parcialm=document.querySelector("#fondo");
             parcialm.style.backgroundImage = "url('/img/parcialm.gif')";
             parSound.play();
@@ -235,8 +225,6 @@ function showWeather(datos){
  
             palabra = " Parcialmente Nublado"
             imgsrc = "img/parcialn.png"
-           /* const parSound1=document.createElement('audio')
-            parSound1.src="sounds/parcial.mp3"*/
             const parcialm1=document.querySelector("#fondo");
             parcialm1.style.backgroundImage = "url('/img/parcialm.gif')";
             parSound1.play();
@@ -246,15 +234,10 @@ function showWeather(datos){
         
             palabra = "Nublado"
             imgsrc = "img/totalmentn.png"
-          /*  const sonido=document.createElement('audio')
-            sonido.src="sounds/nublado.mp3"*/
             const nublado=document.querySelector("#fondo");
             nublado.style.backgroundImage = "url('/img/nublado.gif')";
-            console.log("esta lloviending");
+            
             sonido.play();
-  
-
-           // console.log("Nubladito")
 
         break;
 
@@ -262,13 +245,10 @@ function showWeather(datos){
             
             palabra = " Lluvia"
             imgsrc = "img/lluvia.png"
-           /* const lluviaSound=document.createElement('audio')
-            lluviaSound.src="sounds/lluvia.mp3"*/
             lluviaSound.play();
             const llueve=document.querySelector("#fondo");
             llueve.style.backgroundImage = "url('/img/lloviendo2.gif')";
-            console.log("esta lloviending");
-  
+ 
             
         break;
     
@@ -276,8 +256,6 @@ function showWeather(datos){
 
             palabra = "Tormenta Electrica"
             imgsrc = "img/tormenta.png"
-         /*   const tormSound=document.createElement('audio')
-            tormSound.src="sounds/tormenta.mp3"*/
             const torm=document.querySelector("#fondo");
             torm.style.backgroundImage = "url('/img/tormenta2.gif')";
             tormSound.play();
@@ -287,19 +265,17 @@ function showWeather(datos){
 
             palabra = "Nieve"
             imgsrc = "img/snowf.png"
-           /* const nieveSound=document.createElement('audio')
-            nieveSound.src="sounds/nieve.mp3"*/
             const snow=document.querySelector("#fondo");
             snow.style.backgroundImage = "url('/img/snow.gif')";
             nieveSound.play();
+            
         break;
 
         case ((icono==='50d') || (icono==='50n')):
   
             palabra = "Neblina"
             imgsrc = "img/mist.png"
-          /*  const nebliSound=document.createElement('audio')
-           nebliSound.src="sounds/neblina.mp3"*/
+   
            const neblina=document.querySelector("#fondo");
            neblina.style.backgroundImage = "url('/img/neblina.gif')";
             nebliSound.play();
@@ -326,7 +302,7 @@ function showWeather(datos){
     const imagenC = document.createElement('img');
     imagenC.src = imgsrc;
     divImagen.classList.add('col-start-7', 'col-span-2');
-    imagenC.classList.add('mx-auto');
+    imagenC.classList.add('mx-auto', 'object-fill');
     divImagen.appendChild(imagenC);
 
     const minMax = document.createElement('div');
@@ -340,18 +316,33 @@ function showWeather(datos){
     const cielo = document.createElement('div');
     cielo.innerHTML = `Cielo: ${palabra}`;
     cielo.classList.add('font-bold', 'col-start-7', 'col-span-2', 'text-center');
+//Humedad
+    const hum = document.createElement('div');
+    hum.innerHTML = `Humedad: ${humedad} %`;
+    hum.classList.add('font-bold', 'col-start-7', 'col-span-2', 'text-center');
+
+//Longitu y latitud
+    const latitud = document.createElement('div');
+    latitud.innerHTML = `Latitud: ${lati} `;
+    latitud.classList.add('font-bold', 'text-center', 'col-start-5', 'col-span-2');   
+
+    const longitud = document.createElement('div');
+    longitud.innerHTML = `Longitud: ${longi} `;
+    longitud.classList.add('font-bold', 'col-start-7', 'col-span-2', 'text-center');   
 
 
     //Todo el resultado 
     const resultadoDiv = document.createElement('div');
     resultadoDiv.classList.add('text-center', 'text-black', 'grid', 'grid-cols-12', 'gap-4');
     resultadoDiv.appendChild(nombreCiudad);
-    /* resultadoDiv.appendChild(HoraLocal); */
     resultadoDiv.appendChild(actual);
     resultadoDiv.appendChild(divImagen);
     resultadoDiv.appendChild(minMax);
     resultadoDiv.appendChild(tempSensa);
     resultadoDiv.appendChild(cielo);
+    resultadoDiv.appendChild(hum);
+    resultadoDiv.appendChild(latitud);
+    resultadoDiv.appendChild(longitud);
     resultado.appendChild(resultadoDiv);
   
 } 
@@ -368,6 +359,7 @@ function limpiarHTML() {
         resultado.removeChild(resultado.firstChild);
         //Inhabilito el boton despues de la primer busqueda
         document.getElementById("btnCapture").disabled=true;
+     
     }
 }
 

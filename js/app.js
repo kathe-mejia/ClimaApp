@@ -120,7 +120,7 @@ function guardarHora(data){
     resultado.appendChild(resultadoDiv);
     console.log(HoraRemota);
     console.log(HoraLocal2)
-    console.log(resultadoDiv)
+    console.log(resultadoDiv) //trata de cuadrar el scripting ppal con algunas clases se ve algo descuadrado
  }
 
 //Funcion consultar clima con API open
@@ -274,7 +274,7 @@ function showWeather(datos){
         case ((icono==='50d') || (icono==='50n')):
   
             palabra = "Neblina"
-            imgsrc = "img/mist.png"
+            imgsrc = "img/mist.png"//ojo pon esta imagen en negro, ya que no contrasta con tu gif que tmb es blanco
    
            const neblina=document.querySelector("#fondo");
            neblina.style.backgroundImage = "url('/img/neblina.gif')";
